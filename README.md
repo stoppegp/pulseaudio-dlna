@@ -9,6 +9,12 @@
 - *Fedora 35:* You need to disable wireplumber:
     
     systemctl --user mask wireplumber.service
+    
+-  Upwards from 6.4, pychromecast>10 is required, which itself requires protobuf>3.19. Those versions are not available on Fedora yet (F35). As a workaround:
+    -   you may install my patched pychromecast-10.3 from the above COPR and upgrade protobuf manually with `pip --install protobuf==3.19.1` (else it will crash on import). 
+    -   Or get the latest pychromecast with pip (uninstall its rpm first). `sudo pip install --upgrade pychromecast`
+
+    **It may break other stuff requiring lesser pychromecast / protobuf on your system !!!**
 
 ______________________________________________________________
 
