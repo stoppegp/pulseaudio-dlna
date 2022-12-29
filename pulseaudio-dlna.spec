@@ -1,7 +1,7 @@
 %global srcname pulseaudio_dlna
 
 Name: pulseaudio-dlna
-Version: 0.6.4
+Version: 0.6.6
 Release: 1
 Source0: %{name}-%{version}.tar.gz
 License: GPLv3
@@ -53,6 +53,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Thu Dec 29 2022 Sinan Haliyo <sinan.haliyo@upmc.fr> 0.6.6-1
+- fix processing of dict-encapsulated sink mime support response
+  84c60d800a3cc549b5b829b1c599c22fa7b030f1 @stsichler (sinan.haliyo@upmc.fr)
+
+* Sat Mar 19 2022 Sinan Haliyo <sinan.haliyo@upmc.fr> 0.6.5-1
+- requires pychromecast 10 (Cygn@users.noreply.github.com)
+
 * Sat Jan 08 2022 Sinan Haliyo <sinan.haliyo@upmc.fr> 0.6.4-1
 - pychromecast 10 compatiblity (Cygn@users.noreply.github.com)
 - pychromecast 10 compatible now (Cygn@users.noreply.github.com)
