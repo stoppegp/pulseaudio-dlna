@@ -496,15 +496,19 @@ class PulseStreamFactory(object):
     def new(self, bus, stream_path):
         try:
             obj = bus.get_object(object_path=stream_path)
-            client_path = str(
-                obj.Get('org.PulseAudio.Core1.Stream', 'Client'))
+            try:
+                client_path = str(
+                    obj.Get('org.PulseAudio.Core1.Stream', 'Client'))
+                client = PulseClientFactory.new(bus, client_path)
+            except dbus.exceptions.DBusException:
+                client = None
             return PulseStream(
                 object_path=str(stream_path),
                 index=str(obj.Get(
                     'org.PulseAudio.Core1.Stream', 'Index')),
                 device=str(obj.Get(
                     'org.PulseAudio.Core1.Stream', 'Device')),
-                client=PulseClientFactory.new(bus, client_path),
+                client=client,
             )
         except dbus.exceptions.DBusException:
             logger.debug(
